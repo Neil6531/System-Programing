@@ -4,18 +4,17 @@
 int main(){
     char keywords[32][15] = { "break", "case", "char", "const", "continue", "default", "do", "else", "enum", "extern", "float", "for", "goto", "if", "long", "register", "return", "short", "signed", "sizeof", "static", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "auto", "double", "int", "struct" };
     
-    char specialChar[][3] = { "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "()", "\"", "\'", "{", "}", "[", "]", ";" };
+    char specialChar[17][3] = {",",";", "!", "@", "#", "$", "^", "&", "*", "(", ")", "()", "\'", "{", "}", "[", "]"};
     
-    char operators[][5] = {"=", "<", ">", "!=", "==", "<=", ">=", "&&", "||", "+", "-", "*", "/", "%d", 
-    "%c", "$s", ","};
+    char operators[15][5] = {"=", "<", ">", "!=", "==", "<=", ">=", "&&", "||", "+", "-", "*", "/" ,"%"};
 
-    // char funs[][8] = {"main", "printf", "scanf"};
+    char funs[3][8] = {"main", "printf", "scanf"};
 
     char s[15];
     char c;
     char key[15];
     int i=0,j,flag,cmp;
-    int keycount=0,sc=0,oper=0,fun=0,iden=0;
+    int keycount=0,sc=0,oper=0,fun=1,iden=0;
 
     FILE *fp;
     //open file
@@ -37,16 +36,29 @@ int main(){
             for(j=0; j<32 ;j++){
                 if(strcmp(s,keywords[j]) == 0){
                     flag = 1;
+                    break;
                 }
-                else if(strcmp(s,specialChar[j]) == 0){
+            }
+
+            for(j=0; j<17; j++){
+                if(strcmp(s,specialChar[j]) == 0){
                     flag = 2;
+                    break;
+                    
                 }
-                else if(strcmp(s,operators[j]) == 0){
+            }
+
+            for(j=0; j<15;j++){
+                if(strcmp(s,operators[j]) == 0){
                     flag = 3;
+                    break;
                 }
-                // else if(strcmp(s,funs[j]) == 0){
-                //     flag = 4;
-                // }
+            }
+
+            for(j=0; j<3; j++){
+                if(strcmp(s,funs[j]) == 0){
+                    flag = 4;
+                }
             }
 
             if(flag == 1){
@@ -79,5 +91,6 @@ int main(){
     printf("Operators : %d\n",oper );
     printf("Function : %d\n",fun);
     printf("Identifier : %d\n",iden);
+    
     return 0;
 }
