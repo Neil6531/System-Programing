@@ -1,7 +1,6 @@
-# include <stdio.h>
-void main ( )
-{
-int a , b , c ;
-c = a + b ;
-return 0;
-}
+Hello ...!
+my name is neel patel
+hey hey
+hey
+
+
