@@ -2,7 +2,7 @@
 #include "string.h"
 
 int main(){
-    char keywords[32][15] = { "break", "case", "char", "const", "continue", "default", "do", "else", "enum", "extern", "float", "for", "goto", "if", "long", "register", "return", "short", "signed", "sizeof", "static", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "auto", "double", "int", "struct" };
+    char keywords[32][15] = { "break", "case", "char", "const", "continue", "default", "do", "else", "enum", "extern", "float", "for", "goto", "if", "long", "register", "return", "short", "signed", "sizeof", "static", "switch", "typedef", "union", "unsigned", "void", "volatile", "while", "auto", "double", "int a", "struct" };
     
     char specialChar[17][3] = {",",";", "!", "@", "#", "$", "^", "&", "*", "(", ")", "()", "\'", "{", "}", "[", "]"};
     
