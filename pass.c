@@ -15,7 +15,7 @@ struct symtab{
 }s[50];
 
 int main(){
-    int i=0,lengh,LC=0,si=0;
+    int i=0,lengh,LC=0,si=0,k,f=0;
     FILE *fp;
     fp = fopen("program.txt","r");
     while(!(feof(fp))){
@@ -38,23 +38,38 @@ int main(){
 
         else{
             if( ( strcmp(p[i].op1,"AREG") || strcmp(p[i].op1,"BREG") || strcmp(p[i].op1,"CREG") || strcmp(p[i].op1,"DREG") ) ){
-                if(strcmp(p[i].op1,"*")){
+                for(k=0;k<=si;k++){
+                    if(!(strcmp(s[k].sym,p[i].op2))){
+                        f=1;
+                    }
+                }
+                if(f!=1){
+                    if(strcmp(p[i].op1,"*")){
+                        strcpy(s[si].sym,p[i].op2);
+                        si++;
+                    }
+                }
+            }
+            else{
+                for(k=0;k<=si;k++){
+                    if(!(strcmp(s[k].sym,p[i].op2))){
+                        f=1;
+                    }
+                }
+
+                if(f!=1){
                     strcpy(s[si].sym,p[i].op2);
                     si++;
                 }
             }
-            else{
-                    strcpy(s[si].sym,p[i].op2);
-                    si++;
-            }
+            f=0;
         }
         LC++;
     }
-
+    printf("first pass")
     for(i=0;i<si;i++){
         printf("%s %d\n",s[i].sym,s[i].addr);
     }
-
 
     return 0;
 }
