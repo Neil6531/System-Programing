@@ -66,10 +66,14 @@ int main(){
         }
         LC++;
     }
-    printf("first pass")
+    printf("|---------------|\n");
+    printf("| Symbol Table  |\n");
+    printf("|---------------|\n");
+    printf("|Symbol\t|Address|\n");
+    printf("|------\t|-------|\n");
     for(i=0;i<si;i++){
-        printf("%s %d\n",s[i].sym,s[i].addr);
+        printf("|   %s\t|  %d\t|\n",s[i].sym,s[i].addr);
     }
-
+    printf("|---------------|\n");
     return 0;
 }
