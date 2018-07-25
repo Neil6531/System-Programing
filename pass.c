@@ -14,8 +14,13 @@ struct symtab{
     int addr;
 }s[50];
 
+struct littab{
+    char lit[3];
+    int addr;
+}l[50];
+
 int main(){
-    int i=0,lengh,LC=0,si=0,k,f=0;
+    int i=0,lengh,LC=0,si=0,k,f=0,addr_size=0;
     FILE *fp;
     fp = fopen("program.txt","r");
     while(!(feof(fp))){
@@ -25,19 +30,40 @@ int main(){
 
     lengh = i;
     LC = atoi(p[0].op1);
-    LC++;
 
     for(i=1;i<=lengh;i++){
         if(strcmp(p[i].lable,"*")){
-            strcpy(s[si].sym,p[i].lable);
             if( !(strcmp(p[i].inst,"DS")) || !(strcmp(p[i].inst,"DC"))){
-                s[si].addr = LC;
-                si++;
+                
+                for(k=0;k<si;k++){
+                    if(!(strcmp(s[k].sym,p[i].lable))){
+                        // printf("%d>>>>>>\n",si);
+                        s[k].addr = LC;
+                        addr_size = atoi(p[i].op1);
+                        LC = LC + addr_size;    
+                    }
+                }
+
+                for(k=0;k<=si;k++){
+                    if(!(strcmp(s[k].sym,p[i].lable))){
+                        f=1;
+                    }
+                }
+
+                if(f!=1){
+                    strcpy(s[si].sym,p[i].lable);
+                    s[si].addr = LC;
+                    si++;
+                    addr_size = atoi(p[i].op1);
+                    LC = LC + addr_size;
+                }
+
             }
         }
 
         else{
             if( ( strcmp(p[i].op1,"AREG") || strcmp(p[i].op1,"BREG") || strcmp(p[i].op1,"CREG") || strcmp(p[i].op1,"DREG") ) ){
+
                 for(k=0;k<=si;k++){
                     if(!(strcmp(s[k].sym,p[i].op2))){
                         f=1;
@@ -50,6 +76,7 @@ int main(){
                     }
                 }
             }
+
             else{
                 for(k=0;k<=si;k++){
                     if(!(strcmp(s[k].sym,p[i].op2))){
@@ -62,9 +89,10 @@ int main(){
                     si++;
                 }
             }
+
             f=0;
+            LC++;
         }
-        LC++;
     }
     printf("|---------------|\n");
     printf("| Symbol Table  |\n");

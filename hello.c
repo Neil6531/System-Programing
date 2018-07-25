@@ -1,6 +1,1 @@
-Hello ...!
-my name is neel patel
-hey hey
-hey
-
-
+# include <stdio.h>
