@@ -6,6 +6,7 @@ C DS 1 *
 * ADD AREG B
 * MOVEM DREG C
 * MOVEM BREG D
+* MOVEM BREG =5
 D DS 1 *
 * STOP * *
 * END * *

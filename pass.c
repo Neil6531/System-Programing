@@ -21,6 +21,7 @@ struct littab{
 
 int main(){
     int i=0,lengh,LC=0,si=0,k,f=0,addr_size=0;
+    char lit_ch[5];
     FILE *fp;
     fp = fopen("program.txt","r");
     while(!(feof(fp))){
@@ -37,7 +38,6 @@ int main(){
                 
                 for(k=0;k<si;k++){
                     if(!(strcmp(s[k].sym,p[i].lable))){
-                        // printf("%d>>>>>>\n",si);
                         s[k].addr = LC;
                         addr_size = atoi(p[i].op1);
                         LC = LC + addr_size;    
@@ -62,7 +62,14 @@ int main(){
         }
 
         else{
-            if( ( strcmp(p[i].op1,"AREG") || strcmp(p[i].op1,"BREG") || strcmp(p[i].op1,"CREG") || strcmp(p[i].op1,"DREG") ) ){
+
+            strcpy(lit_ch,p[i].op2);
+
+            if(!(strcmp(lit_ch,"=5"))){
+                printf("It is lit\n");
+            }
+
+            else if( ( strcmp(p[i].op1,"AREG") || strcmp(p[i].op1,"BREG") || strcmp(p[i].op1,"CREG") || strcmp(p[i].op1,"DREG") ) ){
 
                 for(k=0;k<=si;k++){
                     if(!(strcmp(s[k].sym,p[i].op2))){

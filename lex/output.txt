@@ -1,0 +1,3 @@
+Line : 3
+Word : 7
+Char : 37
